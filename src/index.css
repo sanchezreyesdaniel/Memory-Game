@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-image: url('https://c.wallhere.com/photos/d7/e9/Pok_mon_Charmander_Bulbasaur_Squirtle_GameBoy_white_background-236943.jpg!d');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
