@@ -4,47 +4,42 @@ import { ContextoGlobal } from "../context/GlobalContext.jsx";
 import  { Formulario } from '../componentes/Formulario.jsx';
 
 export function Juego() {
-    const { contadorGlobal, setBase } = useContext(ContextoGlobal);
-    const {tiempo, setTiempo} = useContext(ContextoGlobal)
-    const {puntuacion, setPuntuacion} = useContext(ContextoGlobal)
+    const { contadorGlobal, setBase, tiempo, setTiempo, puntuacion, setPuntuacion } = useContext(ContextoGlobal);
     useEffect(() => {
         async function obtenerPokemons() {
-            const fetchPromises = Array.from({ length: 9 }, async () => {
-                try {
-                    let id = Math.floor(Math.random() * 898) + 1;
-                    const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-                    const respJSON = await resp.json();
-
+            try {
+                const obtenerDatosPokemon = Array.from({ length: 9 }, async () => {
+                    const id = Math.floor(Math.random() * 898) + 1;
+                    const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+                    const datosPokemon = await respuesta.json();
+    
                     return {
-                        id: respJSON.id,
-                        nombre: respJSON.name,
-                        imagen: respJSON.sprites.front_default,
+                        id: datosPokemon.id,
+                        nombre: datosPokemon.name,
+                        imagen: datosPokemon.sprites.front_default,
                         volteada: false,
                     };
-                } catch (error) {
-                    console.log('Ha ocurrido un error', error);
-                    throw error; // Propagate the error
-                }
-            });
-
-            try {
-                const pokemonProvisional = await Promise.all(fetchPromises);
-
-                const array18 = [...pokemonProvisional, ...pokemonProvisional].map((pokemon, index) => ({
+                });
+    
+                const pokemonesProvisionales = await Promise.all(obtenerDatosPokemon);
+    
+                const array18 = [...pokemonesProvisionales, ...pokemonesProvisionales].map((pokemon, index) => ({
                     ...pokemon,
                     index: index + 1 // Índice basado en 1
                 }));
-
-                const shuffledArray = array18.sort(() => Math.random() - 0.5);
-
-                setBase(shuffledArray); // Actualizamos estado con la lista de pokemons
+    
+                const pokemonesMezclados = array18.sort(() => Math.random() - 0.5);
+    
+                setBase(pokemonesMezclados); // Actualizamos estado con la lista de pokemones
             } catch (error) {
-                console.error('Error al obtener los pokemons', error);
+                console.error('Error al obtener los pokemones', error);
+                throw error; // Propagar el error
             }
         }
-
+    
         obtenerPokemons();
-    }, [setBase]); // Se ejecuta solo cuando setBase cambia
+    }, [setBase]);
+    
 
     if(tiempo==0){
         return(

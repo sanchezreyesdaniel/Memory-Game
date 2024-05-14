@@ -10,7 +10,7 @@ export function VistaRanking() {
       try {
         const { data, error } = await supabase
           .from('Ranking')
-          .select('nombre, puntuacion, email, hora, clicks')
+          .select('nombre, puntuacion, email, hora2, clicks')
           .order('puntuacion', { ascending: false });
 
         if (error) {
@@ -50,7 +50,7 @@ export function VistaRanking() {
                 <tr key={index} className={index === 0 ? "bg-green-400" : (index % 2 === 0 ? "bg-gray-200" : "")}>
                   <td className="border px-4 py-2">{registro.nombre}</td>
                   <td className="border px-4 py-2">{registro.puntuacion}</td>
-                  <td className="border px-4 py-2">{registro.hora}</td>
+                  <td className="border px-4 py-2">{registro.hora2}</td>
                   <td className="border px-4 py-2">{registro.clicks}</td>
                   <td className="border px-4 py-2">{registro.email}</td>
                 </tr>

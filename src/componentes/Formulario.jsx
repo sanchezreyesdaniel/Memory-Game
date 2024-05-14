@@ -19,12 +19,13 @@ export function Formulario() {
       setMessage('Por favor, introduce un nombre válido.');
     } else {
       try {
-        const horaActual = new Date().toLocaleString(); // Obtiene la hora actual en formato de cadena de texto
+        const horaActual = new Date().toISOString();
+
 
         const { data, error } = await supabase
           .from('Ranking')
           .insert([
-            { nombre, clicks: contadorGlobal,puntuacion, email: usuario.email, hora: horaActual }
+            { nombre, clicks: contadorGlobal,puntuacion, email: usuario.email, hora2: horaActual }
           ]);
 
         if (error) {

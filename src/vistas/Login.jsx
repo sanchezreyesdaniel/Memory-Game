@@ -19,7 +19,6 @@ export function Login(){
     function controladorPassword(e){
         setPassword(e.target.value)
     }
-
     async function inicioSesion(){
         try {
             let { data, error } = await supabase.auth.signInWithPassword({
@@ -31,8 +30,6 @@ export function Login(){
                 email: data.user.email
             })
             console.log('data de login', data)
-
-            // Navegar a la página de juego después de iniciar sesión
             navigate('/juego');
         } catch (error) {
             console.log('Error en login', error)
@@ -46,7 +43,7 @@ export function Login(){
 
     return(
         <div>
-            <h1>Inicio de sesión</h1>
+            
             <form onSubmit={controladorSubmit} className="w-[400px] border mx-auto mt-10 p-5 bg-slate-200 shadow">
                 <input 
                 onChange={controladorEmail}

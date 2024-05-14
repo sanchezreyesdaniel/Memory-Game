@@ -30,9 +30,9 @@ export function Registro(){
     }
 
     async function registro(){
-        console.log("Email:", email); // Registra el valor del email antes de registrarse
+        console.log("Email:", email); 
         try {
-            // Validar la longitud de la contraseña
+            
             if (password.length < 6) {
                 throw new Error('La contraseña debe tener al menos 6 caracteres');
             }
@@ -42,10 +42,10 @@ export function Registro(){
                 password: password
             });
 
-            console.log("Datos de registro:", data); // Registra la respuesta del registro
-            console.log("Error:", error); // Registra cualquier error durante el registro
+            console.log("Datos de registro:", data); 
+            console.log("Error:", error); 
 
-            // Verificar si data.user es nulo antes de acceder a su propiedad id
+            
             if (data.user) {
                 const { data: usu, error: errorCrearUsu } = await supabase
                     .from('Memory Usuarios')
@@ -75,7 +75,7 @@ export function Registro(){
 
     return(
         <div>
-            <h1>Registro</h1>
+            
             <form onSubmit={(e)=>{controladorSubmit(e)}} className="w-[400px] border mx-auto mt-10 p-5 bg-slate-200 shadow">
                 <input 
                     onChange={(e)=>{
