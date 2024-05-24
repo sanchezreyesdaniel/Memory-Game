@@ -38,7 +38,7 @@ export function Header() {
                     <li className="border-2 border-black p-2 m-2"><Link to="/">HOME</Link></li>
                     <li className="border-2 border-black p-2 m-2"><Link to="/juego">POKEMONS MEMORY</Link></li>
                     <li className="border-2 border-black p-2 m-2"><Link to="/marvelMemory">MARVEL MEMORY</Link></li>
-                    <li className="border-2 border-black p-2 m-2"><Link to="/acercade">RANKING</Link></li>
+                    <li className="border-2 border-black p-2 m-2"><Link to="/acercade">A CERCA DE</Link></li>
                 </ul>
                 <h1 className="flex justify-center text-3xl">POKEMONS MEMORY</h1>
             </div>
